@@ -1,5 +1,5 @@
 require('dotenv').config({
-    path: "C:/Users/user/Project/EngineDataEngineer/.env.development"
+    path: path.resolve('')
 });
 
 const postgres = require('postgres');
