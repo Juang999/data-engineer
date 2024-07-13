@@ -1,0 +1,15 @@
+require('dotenv').config({
+    path: ""
+});
+
+const {Client} = require('pg');
+
+module.exports = class Connection {
+    sourceConnection = new Client({
+        host    : process.env.DB_SOURCE_HOST,
+        port    : process.env.DB_SOURCE_PORT,
+        database: process.env.DB_SOURCE_DATABASE,
+        user    : process.env.DB_SOURCE_USERNAME,
+        password: process.env.DB_SOURCE_PASSWORD
+    })
+}

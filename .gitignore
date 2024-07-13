@@ -1,0 +1,7 @@
+test
+node_modules
+.env.production
+.env.testing
+.env.development
+config/connection.js
+config/destinationConnection.js

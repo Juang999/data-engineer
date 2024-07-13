@@ -1,0 +1,23 @@
+{
+  "name": "enginedataengineer",
+  "version": "1.0.0",
+  "description": "engine to push new data to to_be_processed database",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest --setupFiles dotenv/config"
+  },
+  "author": "Bangkit Juang Raharjo",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "moment": "^2.30.1",
+    "pg": "^8.12.0",
+    "postgres": "^3.4.4",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
