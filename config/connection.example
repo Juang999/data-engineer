@@ -1,15 +1,27 @@
 require('dotenv').config({
-    path: ""
+    path: "C:/Users/user/Project/EngineDataEngineer/.env.development"
 });
 
-const {Client} = require('pg');
+const postgres = require('postgres');
+const {Sequelize} = require('sequelize');
+const {
+    DB_SOURCE_HOST,
+    DB_SOURCE_PORT,
+    DB_SOURCE_DATABASE,
+    DB_SOURCE_USERNAME,
+    DB_SOURCE_PASSWORD,
+    DB_DIALECT,
+    DB_TIMEZONE,
+} = process.env;
 
 module.exports = class Connection {
-    sourceConnection = new Client({
-        host    : process.env.DB_SOURCE_HOST,
-        port    : process.env.DB_SOURCE_PORT,
-        database: process.env.DB_SOURCE_DATABASE,
-        user    : process.env.DB_SOURCE_USERNAME,
-        password: process.env.DB_SOURCE_PASSWORD
+    sourceConnection = new Sequelize(DB_SOURCE_DATABASE, DB_SOURCE_USERNAME, DB_SOURCE_PASSWORD, {
+        host    : DB_SOURCE_HOST,
+        port    : DB_SOURCE_PORT,
+        dialect : DB_DIALECT,
+        dialectOptions: {
+            useUTC: false
+        },
+        timezone: DB_TIMEZONE
     })
 }
