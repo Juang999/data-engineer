@@ -1,6 +1,7 @@
 const Connection = require('../config/connection.js');
 const {SalesOrderRelatedWithShipment} = require('../models');
 const moment = require('moment');
+const {info, error} = require('../helper/Logging.js');
 
 class SoRelatedWithShipment extends Connection {
     run = async () => {
@@ -8,7 +9,7 @@ class SoRelatedWithShipment extends Connection {
             let data = await this.getData();
 
             if (data.length == 0) {
-                console.info("--=[ DATA EQUAL! ]=--");
+                info("--=[ DATA EQUAL! ]=--");
             } else {
                 await SalesOrderRelatedWithShipment.bulkCreate(data, {
                     logging: (sql) => {
@@ -16,12 +17,12 @@ class SoRelatedWithShipment extends Connection {
                     }
                 });
 
-                console.info("--=[ INPUT DATA SUCCESSFULLY ]=--");
+                info({sub_message: "--=[ INPUT DATA SUCCESSFULLY ]=--", total_data: data.length});
                 return;
             }
 
         } catch (error) {
-            console.info('Error => ' + error.message);
+            error('Error => ' + error.message);
             return;
         }
     }
