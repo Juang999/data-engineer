@@ -6,3 +6,4 @@ models/index.js
 .env.development
 config/connection.js
 .env.configuration
+log
