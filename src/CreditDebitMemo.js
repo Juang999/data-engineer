@@ -1,7 +1,7 @@
 const moment = require('moment');
 const {DebitCreditMemo} = require('../models')
 const Connection = require('../config/connection.js');
-const {info, error} = require('../helper/Logging.js');
+const {info, error: errorLog} = require('../helper/Logging.js');
 
 class CreditDebitMemo extends Connection {
     run = async () => {
@@ -21,7 +21,7 @@ class CreditDebitMemo extends Connection {
 
             info({feature: 'credit debit memo',message: 'INPUT DATA SUCCESSFULLY!', total_data: dataAccountReceivable.length});
         } catch (error) {
-            error({feature: 'credit debit memo', message: error.message, total_data: 0})
+            errorLog({feature: 'credit debit memo', message: error.message, total_data: 0})
         }
     }
 
