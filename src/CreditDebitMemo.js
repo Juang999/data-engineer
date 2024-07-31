@@ -6,7 +6,8 @@ const {info, error: errorLog} = require('../helper/Logging.js');
 class CreditDebitMemo extends Connection {
     run = async () => {
         try {
-            let dataAccountReceivable = await this.getDataAccountReceivable();
+            let lastTimestamp = await this.getLastTimestamp();
+            let dataAccountReceivable = await this.getDataAccountReceivable(lastTimestamp);
 
             if (dataAccountReceivable.length == 0) {
                 info({feature: 'credit debit memo', message: "DATA EQUAL!", total_data: 0});
@@ -41,8 +42,8 @@ class CreditDebitMemo extends Connection {
         return last_timestamp;
     }
 
-    getDataAccountReceivable = async () => {
-        let lastTimestamp = moment(await this.getLastTimestamp()).format('YYYY-MM-DD HH:mm:ss');
+    getDataAccountReceivable = async (Timestamp) => {
+        let lastTimestamp = moment(Timestamp).format('YYYY-MM-DD HH:mm:ss');
 
         let [data] = await this.sourceConnection.query(`
                 select
