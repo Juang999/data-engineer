@@ -9,20 +9,20 @@ class SoRelatedWithShipment extends Connection {
             let data = await this.getData();
 
             if (data.length == 0) {
-                info("--=[ DATA EQUAL! ]=--");
+                info({feature: 'sales order related with shipment',message: "DATA EQUAL!", total_data: 0});
             } else {
                 await SalesOrderRelatedWithShipment.bulkCreate(data, {
                     logging: (sql) => {
-                        console.info('');
+
                     }
                 });
 
-                info({sub_message: "--=[ INPUT DATA SUCCESSFULLY ]=--", total_data: data.length});
+                info({feature: 'sales order related with shipment',message: "INPUT DATA SUCCESSFULLY!", total_data: data.length});
                 return;
             }
 
         } catch (error) {
-            error('Error => ' + error.message);
+            error({feature: 'sales order related with shipment', message: error.message, total_data: 0});
             return;
         }
     }
@@ -41,7 +41,10 @@ class SoRelatedWithShipment extends Connection {
                 ],
                 order: [
                     ['soship_add_date', 'DESC']
-                ]
+                ],
+                logging: (query, sqlCommand) => {
+
+                }
             })
 
         return dataValues.soship_add_date;
@@ -368,7 +371,7 @@ class SoRelatedWithShipment extends Connection {
                 )
             `, {
                 logging: (sql) => {
-                    console.info('');
+                    
                 }
             })
 
@@ -377,5 +380,4 @@ class SoRelatedWithShipment extends Connection {
 }
 
 let ClassSalesOrderRelatedWithShipment = new SoRelatedWithShipment();
-
 ClassSalesOrderRelatedWithShipment.run();
