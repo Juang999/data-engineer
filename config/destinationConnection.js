@@ -12,7 +12,14 @@ module.exports = {
         port: envDevelopment.DB_DESTINATION_PORT,
         dialect: envDevelopment.DB_DIALECT,
         dialectOptions: {
-            useUTC: false
+            useUTC: false,
+            connectionTimeout: 300
+        },
+        pool: {
+            max: parseInt(envDevelopment.DB_MAX_CONNECTION),
+            min: parseInt(envDevelopment.DB_MIN_CONNECTION),
+            idle: parseInt(envDevelopment.DB_IDLE_CONNECTION),
+            acquire: parseInt(envDevelopment.DB_ACQUIRE_CONNECTION),
         },
         timezone: envDevelopment.DB_TIMEZONE
     },
@@ -25,6 +32,12 @@ module.exports = {
         dialect: envProduction.DB_DIALECT,
         dialectOptions: {
             useUTC: false
+        },
+        pool: {
+            max: parseInt(envProduction.DB_MAX_CONNECTION),
+            min: parseInt(envProduction.DB_MIN_CONNECTION),
+            idle: parseInt(envProduction.DB_IDLE_CONNECTION),
+            acquire: parseInt(envProduction.DB_ACQUIRE_CONNECTION),
         },
         timezone: envProduction.DB_TIMEZONE
     }
