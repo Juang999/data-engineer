@@ -9,10 +9,7 @@ class CreditDebitMemo extends Connection {
             let lastTimestamp = await this.getLastTimestamp();
             let dataAccountReceivable = await this.getDataAccountReceivable(lastTimestamp);
 
-            if (dataAccountReceivable.length == 0) {
-                info({feature: 'credit debit memo', message: "DATA EQUAL!", total_data: 0});
-                return;
-            }
+            if (dataAccountReceivable.length == 0) return;
 
             await DebitCreditMemo.bulkCreate(dataAccountReceivable, {
                 logging: (sql) => {

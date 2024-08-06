@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-require('dotenv').config({path: path.resolve('./.env.configuration')});
+require('dotenv').config({path: path.resolve('./.env.production')});
 
 const fs = require('fs');
 const Sequelize = require('sequelize');
