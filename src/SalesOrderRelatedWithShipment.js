@@ -8,18 +8,16 @@ class SoRelatedWithShipment extends Connection {
         try {
             let data = await this.getData();
 
-            if (data.length == 0) {
-                info({feature: 'sales order related with shipment',message: "DATA EQUAL!", total_data: 0});
-            } else {
-                await SalesOrderRelatedWithShipment.bulkCreate(data, {
-                    logging: (sql) => {
+            if (data.length == 0) return;
 
-                    }
-                });
+            await SalesOrderRelatedWithShipment.bulkCreate(data, {
+                logging: (sql) => {
 
-                info({feature: 'sales order related with shipment',message: "INPUT DATA SUCCESSFULLY!", total_data: data.length});
-                return;
-            }
+                }
+            });
+
+            info({feature: 'sales order related with shipment',message: "INPUT DATA SUCCESSFULLY!", total_data: data.length});
+            return;
 
         } catch (error) {
             error({feature: 'sales order related with shipment', message: error.message, total_data: 0});
