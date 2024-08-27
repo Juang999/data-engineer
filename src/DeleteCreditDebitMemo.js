@@ -31,9 +31,7 @@ class DeleteCreditDebitMemo extends Connection {
                 WHERE
                     ar_date BETWEEN :start_date AND :end_date
             `, {
-                logging: (sql, queryCommand) => {
-
-                },
+                logging: (sql, queryCommand) => {},
                 replacements: {
                     start_date: startDate,
                     end_date: endDate
@@ -60,7 +58,8 @@ class DeleteCreditDebitMemo extends Connection {
                 ar_date: {
                     [Op.between]: [startDate, endDate]
                 }
-            }
+            },
+            logging: (query, sqlCommand) => {}
         })
     }
 }
