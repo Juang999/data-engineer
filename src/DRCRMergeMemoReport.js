@@ -96,7 +96,7 @@ class DRCRMergeMemoReport extends Connection {
             ORDER BY pt_desc1
             `, {
                 replacements: {time_dimension: timestamp},
-                // logging: false
+                logging: false
             })
 
         return result;
