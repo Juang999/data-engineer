@@ -29,8 +29,6 @@ class DRCRMergeMemoReport extends Connection {
             order: [['time_dimension', 'DESC']]
         })
 
-        console.info(dataValues)
-
         return dataValues;
     }
 
