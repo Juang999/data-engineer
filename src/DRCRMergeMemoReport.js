@@ -109,4 +109,5 @@ class DRCRMergeMemoReport extends Connection {
     }
 }
 
-module.exports = new DRCRMergeMemoReport();
+let DRCRMergeMemoReportScript = new DRCRMergeMemoReport();
+DRCRMergeMemoReportScript.start();
