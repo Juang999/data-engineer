@@ -92,7 +92,7 @@ class UpdateDebitCreditMemo extends Connection {
     }
 
     findOneData = async (ar_code) => {
-        let {dataValues} = await DebitCreditMemo.findOne({
+        let dataAr = await DebitCreditMemo.findOne({
             attributes: [
                 'ar_code',
                 [Sequelize.literal('CAST(ar_amount AS INTEGER)'), 'ar_amount'],
@@ -108,7 +108,14 @@ class UpdateDebitCreditMemo extends Connection {
             logging: (query, sqlCommand) => {}
         })
 
-        return dataValues
+        return (!dataAr) ? {
+                                ar_amount: false, 
+                                ar_pay_amount: false, 
+                                ar_outstanding: false, 
+                                ar_amount_idr: false, 
+                                ar_pay_amount_idr: false, 
+                                ar_outstanding_idr: false
+                            } : dataAr.dataValues;
     }
 }
 
